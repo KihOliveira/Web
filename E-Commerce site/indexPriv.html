@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Desapega, dê um novo lar à sua velharia.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Desapega</title>
+  <script src="script.js"></script>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+  <nav>
+    <img src="images/icon (3).png" onclick="location.href='index.html';">
+    <h1 onclick="location.href='index.html';">Desapega</h1>
+    <div class="nav-btn">
+      <form action="busca.php" method="get">
+        <input type="text" placeholder="Digite sua busca" required name="busca" id="busca">
+        <button type="submit">Buscar</button>
+      </form>
+      <li><a href="#">Categorias</a>
+        <ul>
+          <li><a href="#">Veículo</a></li>
+          <li><a href="#">Eletroeletrônico</a></li>
+          <li><a href="#">Imóvel</a></li>
+          <li><a href="#">Móvel</a></li>
+          <li><a href="#">Vestuário</a></li>
+          <li><a href="#">Outro</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Busca Avançada</a></li>
+      <li><a href="criaAnuncio.html">Criar Anuncio</a></li>
+      <li><a href="#">Meus Anuncios</a></li>
+      <li><a href="index.html" class="exitBtn">Sair</a></li>
+    </div>
+  </nav>
+
+  <main>
+    <h1 class="destaque">Novos anúncios:</h1>
+
+    <section id="anuncios">
+      <template id="card-template">
+        <div class="card">
+          <div class="photo">
+            <img src="images/{{anuncio-image}}">
+          </div>
+          <div class="info">
+            <div class="text">
+              <h1>{{anuncio-name}}</h1>
+              <h2>{{anuncio-city}}</h2>
+              <p>{{anuncio-description}}</p>
+            </div>
+            <div class="price-btn">
+              <p>R${{anuncio-price}}</p>
+              <form action="product.html">
+                <button type="submit">Ver +</button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </template>
+
+    </section>
+
+  </main>
+
+  <script>
+
+    function renderProducts(newProducts) {
+
+      const cardsSection = document.getElementById("anuncios");
+      const template = document.getElementById("card-template");
+
+      for (let card of newProducts) {
+        let html = template.innerHTML
+          .replace("{{anuncio-image}}", card.imagePath)
+          .replace("{{anuncio-name}}", card.name)
+          .replace("{{anuncio-price}}", card.price)
+          .replace("{{anuncio-description}}", card.description)
+          .replace("{{anuncio-city}}", card.city);
+
+        cardsSection.insertAdjacentHTML("beforeend", html);
+      };
+    }
+
+    async function loadProducts() {
+
+      try {
+        let response = await fetch("more-cards.php");
+        if (!response.ok) throw new Error(response.statusText);
+        var products = await response.json();
+      }
+      catch (e) {
+        console.error(e);
+        return;
+      }
+
+      renderProducts(products);
+    }
+
+    window.onload = function () {
+      const btnCriaAnun = document.getElementsByClassName("criaAnuncio");
+      loadProducts();
+
+      if (isset($_SESSION) || session_status() == PHP_SESSION_ACTIVE) {
+        btnCriaAnun.style.display = "block";
+      }
+
+    }
+
+    window.onscroll = function () {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        loadProducts();
+      }
+    };
+
+  </script>
+
+</body>
+
+</html>

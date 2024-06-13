@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Desapega, dê um novo lar à sua velharia.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Desapega</title>
+  <script src="script.js"></script>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+  <nav>
+    <img src="images/icon (3).png" onclick="location.href='index.html';">
+    <h1 onclick="location.href='index.html';">Desapega</h1>
+    <div class="nav-btn">
+      <form action="busca.php" method="get">
+        <input type="text" placeholder="Digite sua busca" required name="busca" id="busca">
+        <button type="submit">Buscar</button>
+      </form>
+      <li><a href="login.html">Entrar</a></li>
+      <li><a href="#">Categorias</a>
+        <ul>
+          <li><a href="#">Veículo</a></li>
+          <li><a href="#">Eletroeletrônico</a></li>
+          <li><a href="#">Imóvel</a></li>
+          <li><a href="#">Móvel</a></li>
+          <li><a href="#">Vestuário</a></li>
+          <li><a href="#">Outro</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Busca Avançada</a></li>
+      <li><a href="criaAnuncio.html" class="criaAnuncio">Criar Anuncio</a></li>
+    </div>
+  </nav>
+
+
+  <main>
+
+    <div class="forms">
+      <div class="login">
+        <h1>Bem vindo(a) de volta!</h1>
+        <form action="login.php" method="post" id="form-login">
+          <div>
+            <label for="usuario">Usuario:</label>
+            <input type="text" id="usuario" name="usuario" placeholder="Digite seu email" required>
+          </div>
+          <div>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" autocomplete="off" placeholder="Digite sua senha" required>
+          </div>
+          <div>
+            <p id="loginFailMsg">Usuário ou senha incorretos.</p>
+          </div>
+          <button id="btnLogin">Entrar</button>
+        </form>
+      </div>
+
+      <div class="cadastro">
+        <h1>Novo(a) por aqui? Cadastre-se!</h1>
+        <form action="cadastrar.php" method="POST">
+          <div>
+            <label for="cadnome">Nome:</label>
+            <input type="text" id="cadnome" name="cadnome" placeholder="Digite seu nome" required>
+          </div>
+          <div>
+            <label for="cadcpf">CPF:</label>
+            <input type="text" id="cadcpf" name="cadcpf" placeholder="Digite seu CPF" required>
+          </div>
+          <div>
+            <label for="cadtel">Telefone:</label>
+            <input type="tel" id="cadtel" name="cadtel" placeholder="Digite seu telefone" required>
+          </div>
+          <div>
+            <label for="cademail">Email:</label>
+            <input type="text" id="cademail" name="cademail" placeholder="Digite seu email" required>
+          </div>
+          <div>
+            <label for="cadsenha">Senha:</label>
+            <input type="password" id="cadsenha" name="cadsenha" autocomplete="off" placeholder="Crie sua senha"
+              required>
+          </div>
+          <button>Cadastrar</button>
+        </form>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <ul>
+      <li>Sobre</li>
+      <li>Ajuda</li>
+      <li>Reembolsos</li>
+    </ul>
+  </footer>
+
+  <script>
+
+    function enviaForm() {
+
+      let xhr = new XMLHttpRequest();
+
+      xhr.open("POST", "login.php");
+      xhr.onload = function () {
+        if (xhr.status != 200) {
+          console.error("Falha inesperada: " + xhr.responseText);
+          return;
+        }
+
+        try {
+          var response = JSON.parse(xhr.responseText);
+        }
+        catch (e) {
+          console.error("String JSON inválida: " + xhr.responseText);
+          return;
+        }
+
+        if (response.success)
+          window.location = response.detail;
+        else {
+          document.querySelector("#loginFailMsg").style.display = 'block';
+          form.senha.value = "";
+          form.senha.focus();
+        }
+      }
+
+      xhr.onerror = function () {
+        console.error("Erro de rede - requisição não finalizada");
+      };
+
+      const form = document.querySelector("form");
+      xhr.send(new FormData(form));
+    }
+
+    window.onload = function () {
+      const btnLogin = document.querySelector("#btnLogin");
+      btnLogin.onclick = enviaForm;
+    }
+
+  </script>
+
+
+</body>
+
+</html>

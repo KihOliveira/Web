@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Desapega, dê um novo lar à sua velharia.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Desapega</title>
+  <script src="script.js"></script>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+  <nav>
+    <img src="images/icon (3).png" onclick="location.href='index.html';">
+    <h1 onclick="location.href='index.html';">Desapega</h1>
+    <div class="nav-btn">
+      <form action="busca.php" method="get">
+        <input type="text" placeholder="Digite sua busca" required>
+        <button type="submit">Buscar</button>
+      </form>
+      <li><a href="login.html">Entrar</a></li>
+      <li><a href="#">Categorias</a>
+        <ul>
+          <li><a href="#">Veículo</a></li>
+          <li><a href="#">Eletroeletrônico</a></li>
+          <li><a href="#">Imóvel</a></li>
+          <li><a href="#">Móvel</a></li>
+          <li><a href="#">Vestuário</a></li>
+          <li><a href="#">Outro</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Busca Avançada</a></li>
+      <li><a href="criaAnuncio.html" class="criaAnuncio">Criar Anuncio</a></li>
+    </div>
+  </nav>
+
+  <main>
+
+    <div class="prod">
+      <div class="img-container">
+        <img src="images/switcholed.jpg" height="420" width="420">
+      </div>
+      <div class="prod-info">
+        <div class="prod-text">
+          <h1>Nintendo Switch Oled</h1>
+          <h2>Uberlandia, Santa Mônica - MG</h2>
+          <h2 id="preco">R$1800</h2>
+          <p>O Nintendo switch foi desenvolvido para fazer parte da sua vida, transformando-se de um console doméstico
+            em um console portátil num piscar de olhos
+            O Switch se trata de um console híbrido semelhante a um tablet, o qual pode ser inserido em uma dock e,
+            assim, ser transformado em um console de mesa. O console também conta com dois controles sem fio acopláveis
+            de cada lado, chamados pela Nintendo de Joy-Con, que podem ser usados individualmente ou ser acoplados à
+            unidade principal (no modo portátil) ou a uma base semelhante a um gamepad (no modo caseiro).
+          </p>
+
+        </div>
+        <div class="prod-price-btn">
+          <form action="enviaMsg.php" method="post">
+            <div>
+              <p>Tem interesse? Escreva uma mensagem!</p>
+              <textarea maxlength="400" id="mensagemInteresse" name="mensagem" autocomplete="off"
+                placeholder="Digite sua Mensagem" required></textarea>
+            </div>
+            <button type="submit">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <ul>
+      <li>Sobre</li>
+      <li>Ajuda</li>
+      <li>Reembolsos</li>
+    </ul>
+  </footer>
+
+</body>
+
+</html>

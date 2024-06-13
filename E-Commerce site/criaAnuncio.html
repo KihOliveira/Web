@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Desapega, dê um novo lar à sua velharia.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Desapega</title>
+    <script src="script.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+    <nav>
+        <img src="images/icon (3).png" onclick="location.href='index.html';">
+        <h1 onclick="location.href='index.html';">Desapega</h1>
+        <div class="nav-btn">
+            <form action="busca.php" method="get">
+                <input type="text" placeholder="Digite sua busca" required name="busca" id="busca">
+                <button type="submit">Buscar</button>
+            </form>
+            <li><a href="login.html">Entrar</a></li>
+            <li><a href="#">Categorias</a>
+                <ul>
+                    <li><a href="#">Veículo</a></li>
+                    <li><a href="#">Eletroeletrônico</a></li>
+                    <li><a href="#">Imóvel</a></li>
+                    <li><a href="#">Móvel</a></li>
+                    <li><a href="#">Vestuário</a></li>
+                    <li><a href="#">Outro</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Busca Avançada</a></li>
+            <li><a href="criaAnuncio.html" class="criaAnuncio">Criar Anuncio</a></li>
+        </div>
+    </nav>
+
+    <main>
+
+        <div class="cadAnun">
+            <h1>Crie um novo anuncio:</h1>
+            <form action="criaAnuncio.php" method="post" enctype="multipart/form-data">
+                <div class="informacoes">
+                    <h2>Dados do anuncio</h2>
+                    <div>
+                        <label for="titulo">Titulo:</label>
+                        <input type="text" id="titulo" name="titulo" autocomplete="on" placeholder="Digite um titulo"
+                            required>
+                    </div>
+
+                    <div>
+                        <label for="preco">Preço:</label>
+                        <input type="text" id="preco" name="preco" autocomplete="on" placeholder="Digite um preço"
+                            required>
+                    </div>
+
+                    <div>
+                        <label for="desc">Descrição:</label>
+                        <textarea maxlength="200" id="desc" name="desc" autocomplete="on" placeholder="Descrição"
+                            required></textarea>
+                    </div>
+
+                    <div>
+                        <label for="categoria" class="form-label">Selecione a categoria </label>
+                        <select name="categoria" id="categoria" class="form-select">
+                            <option value="Outro">Outro</option>
+                            <option value="Veículo">Veículo</option>
+                            <option value="Eletroeletrônico">Eletroeletrônico</option>
+                            <option value="Imóvel">Imóvel</option>
+                            <option value="Móvel">Móvel</option>
+                            <option value="Vestuário">Vestuário</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="imagem">Imagem:</label>
+                        <input type="file" accept=".png, .jpg, .jpeg" name="imagem" id="imagem">
+                    </div>
+                </div>
+
+
+                <div class="localizacao">
+                    <h2>Endereço</h2>
+                    <div>
+                        <label for="estado" class="form-label">Selecione seu Estado </label>
+                        <select name="estado" id="estado" class="form-select">
+                            <option value="">Escolha um</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="cep">CEP:</label>
+                        <input type="text" id="cep" name="cep" autocomplete="off" placeholder="Digite seu cep">
+                    </div>
+                    <div>
+                        <label for="cidade">Cidade:</label>
+                        <input type="text" id="cidade" name="cidade" autocomplete="off" placeholder="Digite sua cidade"
+                            required>
+                    </div>
+                    <div>
+                        <label for="bairro">Bairro:</label>
+                        <input type="text" id="bairro" name="bairro" autocomplete="off" placeholder="Digite seu bairro">
+                    </div>
+
+                </div>
+
+                <div>
+                    <button>Criar</button>
+                </div>
+
+            </form>
+        </div>
+
+    </main>
+    <footer>
+        <ul>
+            <li>Sobre</li>
+            <li>Ajuda</li>
+            <li>Reembolsos</li>
+        </ul>
+    </footer>
+</body>
+
+</html>
